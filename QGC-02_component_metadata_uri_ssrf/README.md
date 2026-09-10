@@ -12,7 +12,7 @@
 | **Platform** | Arbitrary-path write and RCE are **Windows-only**. SSRF, attacker-named file, and file destruction are cross-platform |
 | **Status** | Live-confirmed 2026-08-26 on v5.1.3 / Windows 11 x64 — write, destroy, persist, and code execution at next logon |
 | **Advisory** | [GHSA-fpm2-gxf4-mf9j](https://github.com/mavlink/qgroundcontrol/security/advisories/GHSA-fpm2-gxf4-mf9j) |
-| **Fix PR** | _pending_ — branch `fix/qgc-02-download-output-path` |
+| **Fix** | [`fix/qgc-02-download-output-path`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-02-download-output-path) — branch against `e6aeacb96`, no PR opened yet |
 
 ---
 
