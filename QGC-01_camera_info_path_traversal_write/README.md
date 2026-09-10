@@ -7,7 +7,7 @@
 | **CWE** | CWE-22 · CWE-73 · secondary CWE-170 (improper null termination → over-read) |
 | **Affected** | every supported version. `master`, `v5.1.x`, `v5.0.x`, `v4.4.x`. Not a regression |
 | **Fixed in** | nothing yet |
-| **Verified** | master `e6aeacb96` (2026-09-10), plus tags `v5.1.4`, `v5.1.0`, `v5.0.8`, `v4.4.4` |
+| **Verified** | master `4fd86f9ae` (2026-09-10), plus tags `v5.1.4`, `v5.1.0`, `v5.0.8`, `v4.4.4` |
 | **Interaction** | **None.** QGC solicits `CAMERA_INFORMATION` itself after connect |
 | **Platform** | Creation and truncation are cross-platform. The NTFS alternate-data-stream variant is Windows-only |
 | **Status** | Live-confirmed 2026-08-26 on Windows 11 x64 — creation, truncation, and a hidden NTFS stream write, all with zero operator interaction |
@@ -259,7 +259,7 @@ Not a regression. The sink is present in every version checked:
 
 | Version | File | `asprintf` cache sink | `WriteOnly` cache write |
 |---|---|---|---|
-| `master` `e6aeacb96` | `src/Camera/VehicleCameraControl.cc` | `:119` | `:932` |
+| `master` `4fd86f9ae` | `src/Camera/VehicleCameraControl.cc` | `:119` | `:932` |
 | `v5.1.4`, `v5.1.0` | `src/Camera/VehicleCameraControl.cc` | `:119` | `:932` |
 | `v5.0.8` | `src/Camera/VehicleCameraControl.cc` | `:134` | `:837` |
 | `v4.4.4` | `src/Camera/QGCCameraControl.cc` | `:170` | `:850` |

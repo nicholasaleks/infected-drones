@@ -7,12 +7,12 @@
 | **CWE** | CWE-22 · CWE-73 · CWE-494 · CWE-918 · CWE-295 |
 | **Affected** | `>= 5.1.0, <= 5.1.4` and `master`. Not 5.0.x / 4.4.x — this is a 5.1 regression |
 | **Fixed in** | nothing yet |
-| **Verified** | master `e6aeacb96` (2026-09-10) and tag `v5.1.4` (2026-08-30) — code unchanged, line numbers below are master |
+| **Verified** | master `4fd86f9ae` (2026-09-10) and tag `v5.1.4` (2026-08-30) — code unchanged, line numbers below are master |
 | **Interaction** | **None.** Fires on connect |
 | **Platform** | Arbitrary-path write and RCE are **Windows-only**. SSRF, attacker-named file, and file destruction are cross-platform |
 | **Status** | Live-confirmed 2026-08-26 on v5.1.3 / Windows 11 x64 — write, destroy, persist, and code execution at next logon |
 | **Advisory** | [GHSA-fpm2-gxf4-mf9j](https://github.com/mavlink/qgroundcontrol/security/advisories/GHSA-fpm2-gxf4-mf9j) |
-| **Fix** | [`fix/qgc-02-download-output-path`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-02-download-output-path) — branch against `e6aeacb96`, no PR opened yet |
+| **Fix** | [`fix/qgc-02-download-output-path`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-02-download-output-path) — branch against `4fd86f9ae`, no PR opened yet |
 
 ---
 
@@ -235,7 +235,7 @@ if (_downloadState.file.open(QFile::WriteOnly | QFile::Truncate)) { ...
 ```
 
 Same sink, same Startup-folder outcome, reached over the one channel the attacker is guaranteed to
-already have. **Status:** mechanism source-verified at master `e6aeacb96`; PoC self-test green
+already have. **Status:** mechanism source-verified at master `4fd86f9ae`; PoC self-test green
 (`poc_QGC02_mftp_transport_write.py`); the live Windows run for this variant specifically is
 outstanding — the HTTP variant is the one confirmed end to end in §Demo.
 
