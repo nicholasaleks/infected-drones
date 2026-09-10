@@ -2,16 +2,16 @@
 
 **Drone-to-Ground Control Station attack vectors, vulnerabilities & exploits**
 
-<p align="center">
-  <img src="infect-drone.png" alt="Infected Drone" width="720"/>
-</p>
-
 Drone fleets today are one operator flying dozens or hundreds of drones from a
 single ground station. This makes the ground control station a valuable target for adversaries.
 It is where the pilot is usually located, it often stores mission data, and it is a prime vector
 for lateral movement across UxS networks and other drones in a fleet.
 
-Most drone security research has focused on targeting the drone. The research in this repo takes an
+<p align="center">
+  <img src="infect-drone.png" alt="Infected Drone" width="720"/>
+</p>
+
+Most drone security research has focused on targeting the drone. The <a href="https://github.com/nicholasaleks/infected-drones">Infected Drone</a> research takes an
 alternative approach and highlights how a single compromised drone can attack ground stations that connect to it.
 Because most ground control software trusts whatever the drone sends it, there is a lack of
 authentication, validation, and sanitization, allowing data from a compromised
