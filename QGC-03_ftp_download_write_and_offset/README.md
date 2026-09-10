@@ -7,11 +7,11 @@
 | **CWE** | CWE-22 (path traversal, write is `WriteOnly \| Truncate`) · CWE-770 (allocation without limits) |
 | **Affected** | **Traversal:** `>= 5.1.0, <= 5.1.4` and `master`. **Disk fill:** every version checked, including `v5.0.8` and `v4.4.4` |
 | **Fixed in** | nothing yet |
-| **Verified** | master `e6aeacb96` (2026-09-10), plus tags `v5.1.4`, `v5.1.0`, `v5.0.8`, `v4.4.4` |
+| **Verified** | master `4fd86f9ae` (2026-09-10), plus tags `v5.1.4`, `v5.1.0`, `v5.0.8`, `v4.4.4` |
 | **Interaction** | **Traversal:** one **download** click on the Scripting page. **Disk fill: none**, it rides the automatic `param.pck` fetch on connect |
 | **Status** | Traversal live-confirmed 2026-08-26 on macOS (write to `/tmp`) and Windows 11 (`.bat` into the per-user Startup folder, executed at next logon). Disk fill is source-verified, not bench-tested |
 | **Advisory** | [GHSA-9q69-3f77-jhw8](https://github.com/mavlink/qgroundcontrol/security/advisories/GHSA-9q69-3f77-jhw8) |
-| **Fix** | traversal: branch `fix/qgc-03-ftp-download-filename` against `e6aeacb96`, not yet pushed. Offset: left to the maintainers, see below |
+| **Fix** | traversal: [`fix/qgc-03-ftp-download-filename`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-03-ftp-download-filename) against `e6aeacb96`, no PR opened yet. Offset: left to the maintainers, see below |
 
 ---
 
@@ -256,7 +256,7 @@ Bounding it:
 
 The two halves have different reach, and conflating them understates the disk fill.
 
-| | master `e6aeacb96` | v5.1.4 | v5.1.0 | v5.0.8 | v4.4.4 |
+| | master `4fd86f9ae` | v5.1.4 | v5.1.0 | v5.0.8 | v4.4.4 |
 |---|---|---|---|---|---|
 | `FTPController.cc` | yes | yes | yes | **absent** | **absent** |
 | `ScriptingComponent.qml` | yes | yes | yes | **absent** | **absent** |
