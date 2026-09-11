@@ -12,7 +12,7 @@
 | **Platform** | Cross-platform |
 | **Status** | CWE-191 live-confirmed 2026-08-26 on Windows 11: a vehicle-hosted log served over MAVLink-FTP pinned one core at 100% indefinitely, and the burn survived closing the application. CWE-125 silent in-page over-read confirmed on macOS. The page-crossing crash and an ASan build are not yet tested |
 | **Advisory** | [GHSA-xr3f-6cgq-q3v7](https://github.com/mavlink/qgroundcontrol/security/advisories/GHSA-xr3f-6cgq-q3v7) |
-| **Fix** | _pending_ |
+| **Fix** | branch `fix/qgc-04-dataflash-fmt-validation` against `4fd86f9ae`, not yet pushed |
 
 ---
 
@@ -288,3 +288,19 @@ and there is no ASan build here, which is why the crash is listed as untested ra
 result.
 
 The crafted logs are regenerable and are not committed.
+
+---
+
+## Fix scope
+
+The branch adds one condition, at the point where a format is registered in
+`parseFmtMessages`: a record is accepted only when `length >= 3` and
+`calculatePayloadSize(format) <= length - 3`.
+
+That is the only place both sizes are known together, and checking there fixes all three
+behaviours at once. `length - 3` can no longer be negative, so neither skip path rewinds and the
+`pos + payloadSize > size` guard stops being bypassable. The format string can no longer declare more
+bytes than the record holds, which bounds the offset `parseMessage()` accumulates.
+
+`parseMessage()` is deliberately untouched. Giving it the payload length means changing its signature
+and both call sites, which is a wider change than the defect needs.
