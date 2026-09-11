@@ -272,9 +272,19 @@ Connect QGC to the harness, open **Analyze → Onboard Logs**, refresh, download
 downloaded log in **Analyze → Log Viewer**. The underflow log stays on "Loading…" forever with one
 core saturated.
 
-`make_malicious_bin.py` also emits the over-read case, an `FMT` declaring `length = 4` with
-`format = "a"`, which reads 64 bytes out of a 1-byte payload window. That one is silent on a normal
-run: to see it you need the crafted record positioned within 64 bytes of the end of the file's last
-page, or an ASan build. Neither is set up here, which is why the crash half is listed as untested.
+`make_malicious_bin.py` writes four logs, each isolating one behaviour:
+
+| File | `FMT` | Expected |
+|---|---|---|
+| `underflow_hang.bin` | `length = 0`, payload `-3`, net **0** | infinite loop, one core at 100% |
+| `underflow_stall.bin` | `length = 1`, payload `-2`, net **+1** | slow crawl, terminates |
+| `oob_overread.bin` | `length = 4`, `format = "a"` | silent 64-byte read from a 1-byte window, no visible effect |
+| `oob_overread_pagecross.bin` | same, padded to 16 KiB | the record sits near a page boundary, so the over-read should fault |
+
+Only `underflow_hang.bin` is confirmed end to end. `oob_overread.bin` was observed to be silent on
+macOS, which is the expected outcome when the read lands in the zero-filled tail of a mapped page.
+`oob_overread_pagecross.bin` is built to push the read into an unmapped page but has not been run,
+and there is no ASan build here, which is why the crash is listed as untested rather than as a
+result.
 
 The crafted logs are regenerable and are not committed.
