@@ -19,6 +19,22 @@ drone to lead to file CRUD, code execution, or a crash on the operator's machine
 
 ---
 
+## Responsible use
+
+This repository documents vulnerabilities in ground control station software and ships working
+proof-of-concept code for them. It is published so operators can understand their exposure and so
+maintainers can reproduce and fix these issues.
+
+Run the PoCs only against systems you own or have written permission to test. Every one of them is
+written for a bench: the payloads are benign markers, and nothing here is packaged for use against
+someone else's aircraft or ground station. Using this material against systems you do not control is
+likely illegal wherever you are.
+
+Each finding's Reproduction section states what it needs and what it does. Read it before running
+anything.
+
+---
+
 ## Findings
 
 Legend:
@@ -47,7 +63,7 @@ chain, or a full MITM.
 | [MAVSDK-03](MAVSDK-03_lzma_decompression_bomb/) | MAVSDK | 🟠 HIGH | 409/400/770/459 | `.xz` cam-definition or COMPONENT_METADATA → unbounded decompression → **persistent disk exhaustion** | push (CAMERA_INFORMATION.cam_definition_uri, auto) — a bare HEARTBEAT starts it | ✅ | ✅ most natural (camera) | ✅ | ✅ | ✅ | ✅ auto-consumed push; ~50 s of 57.6 kbps airtime per 2 GiB | ✅ | [branch](https://github.com/nicholasaleks/MAVSDK/tree/fix/mavsdk-03-inflate-output-limit) |
 | [MAVPROXY-01](MAVPROXY-01_asterix_pickle_rce/) | MAVProxy | 🟠 HIGH | 502 | asterix `pickle.loads` over UDP → RCE | IP side-channel (UDP, NOT the MAVLink RF link) | ❌ not on the MAVLink link | ❌ separate UDP socket | ⚠️ only if it can reach :45454 | ✅ UDP to host:45454 | ❌ own UDP socket, not relay | ❌ not on RF/MAVLink link | ❌ not on RF/MAVLink link | fixed upstream by [#1728](https://github.com/ArduPilot/MAVProxy/pull/1728), unreleased |
 | [MAVROS-01](MAVROS-01_param_id_map_dos/) | mavros | 🟡 MED | 345/770 | PARAM_VALUE → forged global `/parameter_events` + uncapped map | push/stream (inject PARAM_VALUE, no handshake) | ✅ | ✅ emits PARAM_VALUE | ✅ | ✅ UDP flood | ✅ | ✅ flood PARAM_VALUE | ✅ | none |
-| [MAVROS-02](MAVROS-02_ftp_uncaught_exception_dos/) | mavros | 🟠 **HIGH** | 125/617/248 | FTP write-ack → unbounded `std::advance` → **heap disclosure** + process abort | handshake (poison FTP reply → crash) | ✅ | ✅ peer sends bad FTP | ✅ | ⚠️ | ✅ | ⚠️ must land malformed reply | ✅ bridge injects bad reply | none |
+| [MAVROS-02](MAVROS-02_ftp_write_ack_heap_disclosure/) | mavros | 🟠 **HIGH** | 125/617/248 | FTP write-ack → unbounded `std::advance` → **heap disclosure** + process abort | handshake (poison FTP reply → crash) | ✅ | ✅ peer sends bad FTP | ✅ | ⚠️ | ✅ | ⚠️ must land malformed reply | ✅ bridge injects bad reply | none |
 | [DRONEKIT-01](DRONEKIT-01_trust_boundary_handoff/) | DroneKit | ⚪ INFO | 20 | trust-boundary handoff (param_id / STATUSTEXT) | push (telemetry → app callbacks; by-design handoff) | ✅ | ✅ any component | ✅ | ✅ | ✅ | ✅ any push frame reaches callback | ✅ | n/a |
 
 ---
@@ -55,7 +71,7 @@ chain, or a full MITM.
 ## Delivery vectors
 
 The matrix scores seven columns per finding: the five vectors below, plus the two SiK radio
-(RF telemetry) modes, which get their own callout after given the injection-vs-MITM nuance.
+(RF telemetry) modes, which get their own callout below given the injection-vs-MITM nuance.
 
 1. **Infected flight controller, serial connection, or supply chain.** A local attacker or a malicious
    flight controller gets physically connected to the GCS host or the radio. The vehicle or firmware is

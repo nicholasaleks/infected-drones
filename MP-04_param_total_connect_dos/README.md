@@ -217,6 +217,19 @@ rather than observed — which of them fires depends on the calling thread at ru
 
 ---
 
+## Version scope
+
+| Version | `RALLY_TOTAL` block | `FENCE_TOTAL` block | `MAVLinkParam.ToString` | `BeginInvokeIfRequired` |
+|---|---|---|---|---|
+| `master` `0cdb16308` (verified) | `MainV2.cs:1762` | `MainV2.cs:1800` | `MAVLinkParam.cs:219` | `ControlHelpers.cs:101` |
+| 1.3.83 (latest release, 2025-09-10) | `:1746` | `:1784` | `:219` | `:101` |
+
+Mission Planner publishes rolling tags rather than per-release branches; 1.3.83 is commit
+`b78a7495`. `master` has not moved since the commit verified above, and both parse sites sit in the
+same post-connect block in each tree.
+
+---
+
 ## Reproduction
 
 Authorized bench only. Requires `pymavlink`.

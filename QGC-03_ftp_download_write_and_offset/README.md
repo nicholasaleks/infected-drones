@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | **Product** | QGroundControl |
-| **Severity** | **HIGH** |
+| **Severity** | **HIGH** — traversal, CVSS 3.1 **7.1** `AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:L`. Disk fill **5.3** `AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`, zero-click but source-verified only |
 | **CWE** | CWE-22 (path traversal, write is `WriteOnly \| Truncate`) · CWE-770 (allocation without limits) |
 | **Affected** | **Traversal:** `>= 5.1.0, <= 5.1.4` and `master`. **Disk fill:** every version checked, including `v5.0.8` and `v4.4.4` |
 | **Fixed in** | nothing yet |

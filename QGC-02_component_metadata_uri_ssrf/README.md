@@ -317,6 +317,8 @@ source-verified across the release tags, not bench-tested.
 
 ## Reproduction
 
+Authorized bench only.
+
 Authorized bench/localhost only. Requires `pymavlink`.
 
 ```bash

@@ -214,6 +214,19 @@ homoglyph tricks do **not** work here — the loader matches the true extension 
 
 ---
 
+## Version scope
+
+| Version | listing entry | `GetFiles()` | download `Path.Combine` | `PluginLoader.LoadAll` |
+|---|---|---|---|---|
+| `master` `0cdb16308` (verified) | `MAVFtp.cs:1310` | `MavFTPUI.cs:172` | `MavFTPUI.cs:345` | `PluginLoader.cs:203` |
+| 1.3.83 (latest release, 2025-09-10) | `:1310` | `:171` | `:344` | `:203` |
+
+Mission Planner publishes rolling tags rather than per-release branches; 1.3.83 is commit
+`b78a7495`. `master` has not moved since the commit verified above. The code is the same in both, so
+the released build carries the finding unchanged.
+
+---
+
 ## Reproduction
 
 Authorized bench only. Requires `pymavlink`.

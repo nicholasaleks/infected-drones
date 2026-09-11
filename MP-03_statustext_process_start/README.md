@@ -240,6 +240,19 @@ Bounding it:
 
 ---
 
+## Version scope
+
+| Version | `STATUSTEXT` handler | arm-failure body | markup regex | `LinkLabel` sink | `OpenUrl` |
+|---|---|---|---|---|---|
+| `master` `0cdb16308` (verified) | `MAVLinkInterface.cs:1815` | `FlightData.cs:1050` | `CustomMessageBox.cs:87` | `:165` | `Common.cs:455` |
+| 1.3.83 (latest release, 2025-09-10) | `:1812` | `:1038` | `:87` | `:165` | `Common.cs:393` |
+
+The markup parser and the `LinkLabel` sink are at identical lines in both. Mission Planner publishes
+rolling tags rather than per-release branches; 1.3.83 is commit `b78a7495`, and `master` has not
+moved since the commit verified above.
+
+---
+
 ## Reproduction
 
 Authorized bench only. Requires `pymavlink`.

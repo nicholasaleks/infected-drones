@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | **Product** | Mission Planner (ArduPilot GCS, Windows / .NET) |
-| **Severity** | **HIGH** |
+| **Severity** | **HIGH** — CVSS 3.1 **8.1** `AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N` |
 | **CWE** | CWE-94 (code injection) · CWE-78 (injection into a command-string interpreter) · CWE-20 · CWE-610 |
 | **Affected** | `master` and every released Mission Planner. Latest release 1.3.83 (2025-09-10) |
 | **Fixed in** | nothing yet |
@@ -269,6 +269,19 @@ Bounding it:
 | Native code execution | **No** | limited to elements already installed. Powerful, but not arbitrary shellcode |
 | Reachable without the `gst://` prefix | **Yes, narrower** | the RTSP `location=` interpolation at `:73` allows a ` ! ` breakout |
 | Privilege escalation | **No** | runs as the operator |
+
+---
+
+## Version scope
+
+| Version | `VIDEO_STREAM_INFORMATION` handler | `GStreamerPipeline` | `GStreamer.Start` | auto-connect timer |
+|---|---|---|---|---|
+| `master` `0cdb16308` (verified) | `CameraProtocol.cs:287` | `CameraProtocol.cs:37` | `GStreamer.cs:1184` | `GimbalVideoControl.cs:765` |
+| 1.3.83 (latest release, 2025-09-10) | `:287` | `:37` | `:1184` | `:765` |
+
+Every citation lands on the same line in both trees. Mission Planner publishes rolling tags rather
+than per-release branches; 1.3.83 is commit `b78a7495`, and `master` has not moved since the commit
+verified above.
 
 ---
 
