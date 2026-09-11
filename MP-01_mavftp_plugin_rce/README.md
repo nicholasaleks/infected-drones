@@ -12,7 +12,7 @@
 | **Platform** | Windows. Mission Planner is a WinForms / .NET Framework application |
 | **Status** | Live-tested against Mission Planner on Windows |
 | **Advisory** | [GHSA-r78w-8v8p-4v5p](https://github.com/ArduPilot/MissionPlanner/security/advisories/GHSA-r78w-8v8p-4v5p) |
-| **Fix** | branch `fix/mp-01-mavftp-filename-traversal` against `0cdb16308`, not yet pushed |
+| **Fix** | [`fix/mp-01-mavftp-filename-traversal`](https://github.com/nicholasaleks/MissionPlanner/tree/fix/mp-01-mavftp-filename-traversal) against `0cdb16308`, no PR opened yet |
 
 ---
 
