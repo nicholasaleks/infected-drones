@@ -22,8 +22,8 @@ drone to lead to file CRUD, code execution, or a crash on the operator's machine
 ## Responsible use
 
 This repository documents vulnerabilities in ground control station software and ships working
-proof-of-concept code for them. It is published so operators can understand their exposure and so
-maintainers can reproduce and fix these issues.
+proof-of-concept code for them. It is published for educational purposes only and for operators
+to understand their exposure and so maintainers can reproduce and fix these issues.
 
 Run the PoCs only against systems you own or have written permission to test. Every one of them is
 written for a bench: the payloads are benign markers, and nothing here is packaged for use against
