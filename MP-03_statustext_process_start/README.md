@@ -24,11 +24,6 @@
 
 ▶ **[Watch on YouTube](https://www.youtube.com/watch?v=yo7rNbbAsvU)**
 
-The operator connects and presses **Arm**. The arm is rejected, and the failure dialog shows a link
-whose visible text is a genuine ArduPilot compass-calibration documentation URL while the target is a
-separate attacker string. The label and the target are two different capture groups in the same
-markup, so they never have to agree.
-
 ---
 
 ## Summary
@@ -260,25 +255,3 @@ link. Clicking it fires `Process.Start`.
 
 The payload is split across frames deliberately, because `STATUSTEXT.text` is only 50 bytes and a
 useful target plus a convincing label rarely fits in one.
-
----
-
-## Fix scope
-
-The branch adds a scheme allow-list at both sinks, `CustomMessageBox.cs:179` and `Common.cs:459`:
-only `http` and `https` are opened, everything else is refused and logged. That closes the UNC
-credential leak, `file://`, local executables, bare paths and every registered protocol handler,
-while leaving the markup's actual purpose, linking to ArduPilot documentation, working.
-
-`Common.OpenUrl` was safe to restrict because it has exactly two callers: the markup path at
-`Common.cs:369`, and `ConfigSecure.cs:70`, which passes an `https` login URL. Nothing legitimate
-opens a non-http target through it.
-
-Checked against the finding's vectors: UNC, `C:\Windows\System32\calc.exe`, `file://`,
-`search-ms:`, `ms-settings:`, a bare relative path and an uppercase `FILE://` are all refused; two
-real ArduPilot documentation URLs still open.
-
-What the fix does **not** do is stop the label disagreeing with the target, which is inherent to a
-two-group markup. It makes that disagreement worth no more than an ordinary web link. Stripping
-`[link;...]` from wire-sourced text before `FlightData.cs:1062` would remove even that, but it
-changes the dialog's behaviour for the application's own messages and is a maintainer decision.
