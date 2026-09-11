@@ -29,11 +29,11 @@
 ## Summary
 
 Mission Planner's MAVLink-FTP browser stores each vehicle-supplied directory-entry filename
-**verbatim** — no sanitisation of `..`, `/`, `\`, or drive letters. When the operator clicks
+**verbatim** no sanitisation of `..`, `/`, `\`, or drive letters. When the operator clicks
 **Download**, MP writes the (also vehicle-supplied) contents to
 `Path.Combine(savedir, attacker_filename)`. .NET's `Path.Combine` lets a rooted or `..`-laden second
 argument escape the chosen directory, so a hostile vehicle places an arbitrary file anywhere the MP
-process can write — including MP's own `plugins\` folder.
+process can write, including MP's own `plugins\` folder.
 
 On the next launch, `PluginLoader.LoadAll()` Roslyn-compiles and executes **every** `*.cs` in
 `plugins\` with no signature, hash, or Authenticode check. Arbitrary write becomes arbitrary code
@@ -239,33 +239,3 @@ Success indicators:
 - `evil.cs` appears under `C:\Program Files (x86)\Mission Planner\plugins\` — *not* in the folder you
   picked. That alone proves the traversal.
 - After restarting MP: `%TEMP%\mp_plugin_poc_marker.txt` exists. That proves the full chain.
-
----
-
----
-
-## Fix scope
-
-The branch changes one thing, at both download handlers: the vehicle-supplied entry name is reduced
-with `Path.GetFileName()` before it reaches `Path.Combine()`, and an entry that cannot be represented
-as a file name is logged and skipped rather than written somewhere else.
-
-That is the same reduction the **upload** path in the same file already applies at `:392-393`, which
-is the whole argument for the change: the protection exists, and the inbound direction simply does
-not use it.
-
-Two things are deliberately left out.
-
-The **remote** path is untouched. It is built separately as
-`treeView1.SelectedNode.FullPath + "/" + listView1SelectedItem.Text`, so sanitising the shared string
-at its source in `MAVFtp.cs` would change which file is fetched from the vehicle, not just where it
-lands. Fixing only the local side keeps download behaviour identical.
-
-**Variant B is not fixed.** `MavFtpDokan.cs:351` and `:373` surface the same raw name on a mounted
-drive. Reaching it needs the Dokan driver installed and an explicit **Mount as Drive**, and fixing it
-properly means sanitising at the source, which is the change above that would alter remote paths.
-
-Hardening the plugin loader is the other half of the chain and a much larger change:
-`PluginLoader.LoadAll()` Roslyn-compiles and executes every `*.cs` in `plugins\` with no authenticity
-check, and `Assembly.Load`s every `*.dll`. The MD5 in `CodeGenRoslyn.BuildCode` is a compile-cache
-key, not a trust boundary. Making that trust explicit is a maintainer design decision.
