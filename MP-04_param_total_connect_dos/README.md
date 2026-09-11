@@ -12,7 +12,7 @@
 | **Platform** | Windows |
 | **Status** | **Source-verified only.** PoC written; not live-confirmed against a Windows Mission Planner build. The parse path is read off the code, not observed |
 | **Advisory** | not filed |
-| **Fix** | [`fix/mp-04-param-total-tryparse`](https://github.com/nicholasaleks/MissionPlanner/tree/fix/mp-04-param-total-tryparse) against `0cdb16308`, no PR opened yet |
+| **Fix** | [`fix/mp-04-param-total-tryparse`](https://github.com/nicholasaleks/MissionPlanner/tree/fix/mp-04-param-total-tryparse) against `0cdb16308`, submitted as [ArduPilot/MissionPlanner#3777](https://github.com/ArduPilot/MissionPlanner/pull/3777) |
 
 ---
 

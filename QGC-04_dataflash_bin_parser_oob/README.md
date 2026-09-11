@@ -12,7 +12,7 @@
 | **Platform** | Cross-platform |
 | **Status** | CWE-191 live-confirmed 2026-08-26 on Windows 11: a vehicle-hosted log served over MAVLink-FTP pinned one core at 100% indefinitely, and the burn survived closing the application. CWE-125 silent in-page over-read confirmed on macOS. The page-crossing crash and an ASan build are not yet tested |
 | **Advisory** | [GHSA-xr3f-6cgq-q3v7](https://github.com/mavlink/qgroundcontrol/security/advisories/GHSA-xr3f-6cgq-q3v7) |
-| **Fix** | [`fix/qgc-04-dataflash-fmt-validation`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-04-dataflash-fmt-validation) against `4fd86f9ae`, no PR opened yet |
+| **Fix** | [`fix/qgc-04-dataflash-fmt-validation`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-04-dataflash-fmt-validation) against `4fd86f9ae`, submitted as [mavlink/qgroundcontrol#15086](https://github.com/mavlink/qgroundcontrol/pull/15086) |
 
 ---
 

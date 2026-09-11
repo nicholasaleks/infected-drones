@@ -12,7 +12,7 @@
 | **Platform** | Creation and truncation are cross-platform. The NTFS alternate-data-stream variant is Windows-only |
 | **Status** | Live-confirmed 2026-08-26 on Windows 11 x64 — creation, truncation, and a hidden NTFS stream write, all with zero operator interaction |
 | **Advisory** | [GHSA-c538-95gv-476f](https://github.com/mavlink/qgroundcontrol/security/advisories/GHSA-c538-95gv-476f) |
-| **Fix** | [`fix/qgc-01-camera-info-path-traversal`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-01-camera-info-path-traversal) — branch against `e6aeacb96`, no PR opened yet |
+| **Fix** | [`fix/qgc-01-camera-info-path-traversal`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-01-camera-info-path-traversal) against `e6aeacb96`, submitted as [mavlink/qgroundcontrol#15083](https://github.com/mavlink/qgroundcontrol/pull/15083) |
 
 ---
 

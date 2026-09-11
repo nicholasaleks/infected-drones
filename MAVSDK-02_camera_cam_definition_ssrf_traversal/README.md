@@ -12,7 +12,7 @@
 | **Platform** | Cross-platform |
 | **Status** | Traversal reproduced twice against the shipped `libmavsdk-dev` 3.17.4 package, most recently 2026-09-10: a 370-byte operator file outside the sandbox was renamed out of existence, zero-click. SSRF half source-verified, not reproduced |
 | **Advisory** | not filed |
-| **Fix** | [`fix/mavsdk-02-camdef-traversal`](https://github.com/nicholasaleks/MAVSDK/tree/fix/mavsdk-02-camdef-traversal) against `34b417d45`, no PR opened yet |
+| **Fix** | [`fix/mavsdk-02-camdef-traversal`](https://github.com/nicholasaleks/MAVSDK/tree/fix/mavsdk-02-camdef-traversal) against `34b417d45`, submitted as [mavlink/MAVSDK#3073](https://github.com/mavlink/MAVSDK/pull/3073) |
 
 ---
 

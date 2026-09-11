@@ -11,7 +11,7 @@
 | **Interaction** | **Traversal:** one **download** click on the Scripting page. **Disk fill: none**, it rides the automatic `param.pck` fetch on connect |
 | **Status** | Traversal live-confirmed 2026-08-26 on macOS (write to `/tmp`) and Windows 11 (`.bat` into the per-user Startup folder, executed at next logon). Disk fill is source-verified, not bench-tested |
 | **Advisory** | [GHSA-9q69-3f77-jhw8](https://github.com/mavlink/qgroundcontrol/security/advisories/GHSA-9q69-3f77-jhw8) |
-| **Fix** | traversal: [`fix/qgc-03-ftp-download-filename`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-03-ftp-download-filename) against `e6aeacb96`, no PR opened yet. Offset: left to the maintainers, see below |
+| **Fix** | traversal: [`fix/qgc-03-ftp-download-filename`](https://github.com/nicholasaleks/qgroundcontrol/tree/fix/qgc-03-ftp-download-filename) against `e6aeacb96`, submitted as [mavlink/qgroundcontrol#15085](https://github.com/mavlink/qgroundcontrol/pull/15085). Offset: left to the maintainers, see below |
 
 ---
 

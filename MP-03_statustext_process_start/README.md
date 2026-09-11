@@ -12,7 +12,7 @@
 | **Platform** | Windows |
 | **Status** | Live-tested 2026-06-30 — the "Arm failed" dialog rendered the attacker-controlled link, with a spoofed label, delivered across multiple `STATUSTEXT` frames |
 | **Advisory** | [GHSA-qc8x-7mcx-cqjq](https://github.com/ArduPilot/MissionPlanner/security/advisories/GHSA-qc8x-7mcx-cqjq) |
-| **Fix** | [`fix/mp-03-statustext-link-scheme`](https://github.com/nicholasaleks/MissionPlanner/tree/fix/mp-03-statustext-link-scheme) against `0cdb16308`, no PR opened yet |
+| **Fix** | [`fix/mp-03-statustext-link-scheme`](https://github.com/nicholasaleks/MissionPlanner/tree/fix/mp-03-statustext-link-scheme) against `0cdb16308`, submitted as [ArduPilot/MissionPlanner#3776](https://github.com/ArduPilot/MissionPlanner/pull/3776) |
 
 ---
 

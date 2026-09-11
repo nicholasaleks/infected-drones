@@ -12,7 +12,7 @@
 | **Platform** | Cross-platform |
 | **Status** | Reproduced on the shipped 3.17.4 package, 2026-09-10. 156,316 bytes on the wire became 1,073,741,824 bytes on disk, still present after the application exited. Reproduced again through `COMPONENT_METADATA` against an application with no Camera plugin. Three application lifetimes left 3,221,237,808 bytes cached. A run against a 256 MB filesystem left it 100% full with the partial output never removed |
 | **Advisory** | not filed |
-| **Fix** | [`fix/mavsdk-03-inflate-output-limit`](https://github.com/nicholasaleks/MAVSDK/tree/fix/mavsdk-03-inflate-output-limit) against `34b417d45`, no PR opened yet |
+| **Fix** | [`fix/mavsdk-03-inflate-output-limit`](https://github.com/nicholasaleks/MAVSDK/tree/fix/mavsdk-03-inflate-output-limit) against `34b417d45`, submitted as [mavlink/MAVSDK#3074](https://github.com/mavlink/MAVSDK/pull/3074) |
 
 ---
 

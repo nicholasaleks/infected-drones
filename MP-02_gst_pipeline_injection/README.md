@@ -12,7 +12,7 @@
 | **Platform** | Windows. Requires GStreamer present, which Mission Planner offers to install |
 | **Status** | Live-tested against Mission Planner on Windows — local file read, network exfiltration, and attacker-to-target file write all confirmed |
 | **Advisory** | [GHSA-78c7-f26c-229v](https://github.com/ArduPilot/MissionPlanner/security/advisories/GHSA-78c7-f26c-229v) |
-| **Fix** | [`fix/mp-02-gst-pipeline-passthrough`](https://github.com/nicholasaleks/MissionPlanner/tree/fix/mp-02-gst-pipeline-passthrough) against `0cdb16308`, no PR opened yet |
+| **Fix** | [`fix/mp-02-gst-pipeline-passthrough`](https://github.com/nicholasaleks/MissionPlanner/tree/fix/mp-02-gst-pipeline-passthrough) against `0cdb16308`, submitted as [ArduPilot/MissionPlanner#3775](https://github.com/ArduPilot/MissionPlanner/pull/3775) |
 
 ---
 
